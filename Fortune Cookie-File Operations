@@ -1,0 +1,50 @@
+#///////////////Fortune Cookie - File operations\\\\\\\\\\\\\\\\
+
+import random
+import os
+
+def fortuneCookie():
+    cookielist = [
+                "Opportunities don't happen. You create them.\n",
+                "Happiness is a journey, not a destination.\n",
+                "The best way to predict the future is to create it.\n",
+                "Something wonderful is about to happen.\n",
+                "A fresh start will put you on your way.\n",
+                "Adventure awaits those who dare to dream.\n",
+                "Your hard work will soon pay off in unexpected ways.\n",
+                "A kind word can change someone’s entire day.\n"
+            ]
+    try:
+        
+        if not os.path.exists("fortune_messages.txt"):
+            with open("fortune_messages.txt", "w", encoding = "utf-8") as file:
+                file.writelines(cookielist)
+            
+        
+    
+
+        while True:
+            yes_or_no = input("Hi! Do you want a fortune cookie? \n Y/N \n")
+
+            if (yes_or_no.upper() == ("Y")):
+                
+                input("AWESOME! Enter your name to reveal your fortune \n")
+                with open("fortune_messages.txt", "r", encoding = "utf-8") as file:
+                    lines = file.readlines()
+                    random_line = random.choice(lines).strip() 
+                print(random_line)
+
+
+            elif(yes_or_no.upper() == ("N")):
+                
+                print("OK :( see you later then.")
+                break
+            
+            else:
+            
+                print("Invalid input. Please try again.")
+
+    except Exception as e:
+        print(f"Error: Something went wrong! Reason: {e}")
+
+fortuneCookie()
